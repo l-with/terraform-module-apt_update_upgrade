@@ -5,6 +5,9 @@ data "system_command" "apt_update" {
 data "system_command" "apt_upgrade" {
   depends_on = [data.system_command.apt_update]
   command    = "apt ugrade"
+  expect {
+    exit_code = 100
+  }
 }
 
 data "system_command" "apt_autoremove" {
